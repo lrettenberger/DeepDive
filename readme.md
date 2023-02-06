@@ -4,7 +4,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project is for a lecture at Karlsruhe Institute of Technology. It aims at mechanical engineers diving into deep learning and enabling to get their hands dirty on some practical application of deep learning.
+This project is for a lecture at Karlsruhe Institute of Technology. It aims at mechanical engineers diving into deep learning and enabling to get their hands dirty on some practical application of deep learning. 
 
 Here's why this project fits so well for this:
 * The project is an interactive jupyter notebook, which makes it easy to walk through the explanations, run the code and immediately experience the change
