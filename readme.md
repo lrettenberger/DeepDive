@@ -28,7 +28,8 @@ Of course, no one project will serve all levels of expertice since your needs ma
 Buckle up, click the button and off you go..
 
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/schutera/DeepDive/HEAD?filepath=%2FDeepDive.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/lrettenberger/DeepDive/HEAD?labpath=DeepDive.ipynb
+)
 
 
 <!-- ROADMAP -->
