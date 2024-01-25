@@ -38,7 +38,7 @@ def test_update(update):
     print("Update function works fine, you are ready to go.")
 
 def test_normalize(x, x_norm):
-    assert x_norm.all() == (x/255).all(), "A normalization is done by dividing each value by the max possible value. Which in our case is?"
+    assert (x_norm == (x/255)).all(), "A normalization is done by dividing each value by the max possible value. Which in our case is?"
     print("Normalization worked out well, you are ready to go.")
 
 
