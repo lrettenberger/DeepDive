@@ -42,9 +42,45 @@ def test_normalize(x, x_norm):
     print("Normalization worked out well, you are ready to go.")
 
 
+import training_module
+import torch
+import torchvision.datasets as datasets
+import requests
 
+def accuracy(y_pred,y):
+    y_pred_argmax = torch.argmax(y_pred,dim=1)
+    accuracy = torch.sum(y_pred_argmax == y)/len(y)
+    return accuracy
 
+def submit_score(model,username,password,checkpoint_path="marvin.ckpt"):
+    checkpoint = checkpoint_path
+    trained_model = training_module.TrainingModule.load_from_checkpoint(
+        checkpoint,
+        model=model,
+        loss=None,
+        metric=accuracy
+    )
+    # Put our model into evaluation mode
+    trained_model.eval()
+    model = trained_model.model.to('cpu')
 
+    mnist_testset = datasets.MNIST(root='./data', train=False, download=True, transform=None)
+    x_test = mnist_testset.data.numpy()
+    x_test_normalized = x_test / 255.
+    x_test_normalized = x_test_normalized.reshape(-1, 28, 28, 1)
+    # To work with PyTorch we also need to convert our numpy arrays to tensors.
+    x_test_normalized = torch.from_numpy(x_test_normalized).float()
+    predictions = model(x_test_normalized)
 
-# Copyright and contact: Mark.schutera@mailbox.org
-
+    y_test = mnist_testset.targets.numpy()
+    y_test = torch.from_numpy(y_test)
+    acc = float(accuracy(predictions,y_test))
+    url = "http://194.164.52.117:5500/updatescore"
+    data = {
+        "playerName": username,
+        "newScore": acc,
+        "password": password
+    }
+    response = requests.post(url, json=data)
+    print(response.status_code)
+    print(response.json())

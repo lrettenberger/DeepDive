@@ -94,6 +94,50 @@ app.post('/updatescore', async (req, res) => {
     }
   });
 
+
+// Track progress
+
+const counterFilePath = './nameCounter.json';
+
+// Function to read the name counter from the JSON file
+async function readNameCounter() {
+  try {
+    const fileContent = await fs.readFile(counterFilePath, 'utf8');
+    return JSON.parse(fileContent);
+  } catch (error) {
+    return {};
+  }
+}
+
+// Function to write the name counter to the JSON file
+async function writeNameCounter(nameCounter) {
+  await fs.writeFile(counterFilePath, JSON.stringify(nameCounter, null, 2), 'utf8');
+}
+
+app.post('/countname', async (req, res) => {
+  try {
+    const { name } = req.body;
+
+    if (!name) {
+      return res.status(400).json({ error: 'Name parameter is required' });
+    }
+
+    // Read the current name counter from the JSON file
+    const nameCounter = await readNameCounter();
+
+    // Increment the counter for the specified name
+    nameCounter[name] = (nameCounter[name] || 0) + 1;
+
+    // Write the updated name counter back to the JSON file
+    await writeNameCounter(nameCounter);
+
+    res.status(200).json({ message: `Name ${name} has been called ${nameCounter[name]} times` });
+  } catch (error) {
+    console.error('Error counting name:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
  
 const port = process.env.PORT || 5500;
  
