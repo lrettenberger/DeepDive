@@ -18,10 +18,10 @@ def post_status(function_name):
 def test_add(add):
     try:
         assert add(40, 2) == 42, f"40 + 2 should be 42, but is {add(40,2)}"
-        assert add(9, -2) == 7, "9 - 2, should be 7"
-        assert add(5.9, 2.1) == 8, "5.9 + 2.1 should be 8"
-        assert add(9, 0) == 9, "9 + 0 should be 9"
-        assert add(5, 5) == 10, "5 + 5 should be 10"
+        assert add(9, -2) == 7, f"9 - 2, should be 7, but is {add(9,-2)}"
+        assert add(5.9, 2.1) == 8, f"5.9 + 2.1 should be 8, but is {add(5.9, 2.1)}"
+        assert add(9, 0) == 9, f"9 + 0 should be 9, but is {add(9, 0)}"
+        assert add(5, 5) == 10, f"5 + 5 should be 10, but is {add(5, 5)}"
         print("Everything passed, you are ready to go.")
         post_status(function_name='test_add_success')
     except AssertionError as e:
