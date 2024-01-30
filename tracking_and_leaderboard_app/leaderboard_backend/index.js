@@ -12,36 +12,63 @@ app.use(bodyParser.json());
 
 
 app.post('/updatescore', async (req, res) => {
-    try {
-      // Read the current leaderboard data from the JSON file
-      const fileContent = await fs.readFile(filePath, 'utf8');
-      const leaderboardData = JSON.parse(fileContent);
-  
-      // Extract player name and score from the request body
-      const { playerName, newScore } = req.body;
-  
-      // Find the player in the leaderboard
-      const playerIndex = leaderboardData.players.findIndex(
-        (player) => player.name === playerName
-      );
-  
-      if (playerIndex !== -1) {
-        // If the player exists, update the score
+  try {
+    // Read the current leaderboard data from the JSON file
+    const fileContent = await fs.readFile(filePath, 'utf8');
+    const leaderboardData = JSON.parse(fileContent);
+
+    // Extract player name, new score, and password from the request body
+    const { playerName, newScore, password } = req.body;
+
+    // Find the player in the leaderboard
+    const playerIndex = leaderboardData.players.findIndex(
+      (player) => player.name === playerName
+    );
+
+    if (playerIndex !== -1) {
+      // If the player exists, check if the provided password is valid
+      if (isPasswordValid(leaderboardData.players[playerIndex], password)) {
+        // Update the score if the password is valid
         leaderboardData.players[playerIndex].score = newScore;
+        // Save the updated leaderboard data back to the JSON file
+        await fs.writeFile(filePath, JSON.stringify(leaderboardData, null, 2), 'utf8');
+
+        res.status(200).json({ message: 'Player score updated successfully' });
       } else {
-        // If the player doesn't exist, add a new player
-        leaderboardData.players.push({
-          name: playerName,
-          score: newScore,
-        });
+        res.status(403).json({ error: 'Invalid password' });
       }
-  
+    } else {
+      // If the player doesn't exist, add a new player
+      leaderboardData.players.push({
+        name: playerName,
+        score: newScore,
+        password: password, // Store the password for the new player
+      });
+
       // Save the updated leaderboard data back to the JSON file
       await fs.writeFile(filePath, JSON.stringify(leaderboardData, null, 2), 'utf8');
+
+      res.status(200).json({ message: 'New player added successfully' });
+    }
+  } catch (error) {
+    console.error('Error updating player score:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+  app.post('/deleteallusers', async (req, res) => {
+    try {
+      // Create an empty array for the leaderboard
+      const emptyLeaderboard = {
+        players: [],
+      };
   
-      res.status(200).json({ message: 'Player score updated successfully' });
+      // Write the empty leaderboard to the JSON file
+      await fs.writeFile(filePath, JSON.stringify(emptyLeaderboard, null, 2), 'utf8');
+  
+      res.status(200).json({ message: 'All users deleted successfully' });
     } catch (error) {
-      console.error('Error updating player score:', error);
+      console.error('Error deleting all users:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
