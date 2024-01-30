@@ -42,13 +42,14 @@
 
       render() {
         const { leaderboard, computerPick, result } = this.state;
-        const sortedLeaderboard = leaderboard.sort((a, b) => b.score > a.score);
+           // Sort the leaderboard by player score in descending order
+        const sortedLeaderboard = [...leaderboard].sort((a, b) => b.score - a.score);
         const tableBody = sortedLeaderboard.map((player, index) => (
-          <tr>
-            <td>{index + 1}</td>
-            <td>{player.name}</td>
-            <td>{player.score}</td>
-          </tr>
+          <tr key={index}>
+          <td>{index + 1}</td>
+          <td>{player.name}</td>
+          <td>{player.score}</td>
+        </tr>
         ));
     
         const computerPicked = computerPick ?
