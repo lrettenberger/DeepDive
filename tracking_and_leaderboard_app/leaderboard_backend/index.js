@@ -1,7 +1,10 @@
 const express = require("express");
+const cors = require("cors"); // Import the cors middleware
 const app = express();
 const fs = require('fs/promises'); 
 const bodyParser = require('body-parser');
+
+app.use(cors()); // Enable CORS for all routes
 app.use(express.json());
 
 const filePath = './leaderboard.json';
