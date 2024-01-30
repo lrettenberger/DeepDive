@@ -44,7 +44,9 @@
         const { leaderboard, computerPick, result } = this.state;
            // Sort the leaderboard by player score in descending order
         const sortedLeaderboard = [...leaderboard].sort((a, b) => b.score - a.score);
-        const tableBody = sortedLeaderboard.map((player, index) => (
+        const tableBody = sortedLeaderboard
+        .filter(player => player.name && Number.isInteger(player.score) && player.score !== undefined)
+        .map((player, index) => (
           <tr key={index}>
           <td>{index + 1}</td>
           <td>{player.name}</td>
