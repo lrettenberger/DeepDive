@@ -7,14 +7,26 @@
 
 import numpy as np
 
+def post_status(function_name):
+    url = "http://194.164.52.117:5500/countname"
+    data = {
+        "name": function_name,
+    }
+    response = requests.post(url, json=data)
+
 # Test for the basic add function.
 def test_add(add):
-    assert add(40, 2) == 42, "40 + 2 should be 42"
-    assert add(9, -2) == 7, "9 - 2, should be 7"
-    assert add(5.9, 2.1) == 8, "5.9 + 2.1 should be 8"
-    assert add(9, 0) == 9, "9 + 0 should be 9"
-    assert add(5, 5) == 10, "5 + 5 should be 10"
-    print("Everything passed, you are ready to go.")
+    try:
+        assert add(40, 2) == 42, f"40 + 2 should be 42, but is {add(40,2)}"
+        assert add(9, -2) == 7, "9 - 2, should be 7"
+        assert add(5.9, 2.1) == 8, "5.9 + 2.1 should be 8"
+        assert add(9, 0) == 9, "9 + 0 should be 9"
+        assert add(5, 5) == 10, "5 + 5 should be 10"
+        print("Everything passed, you are ready to go.")
+        post_status(function_name='test_add_success')
+    except AssertionError as e:
+        post_status(function_name='test_add_fail')
+        print(e)
 
 
 def test_forwardPass(forwardPass):

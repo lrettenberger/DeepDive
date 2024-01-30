@@ -150,6 +150,19 @@ app.get('/namecounts', async (req, res) => {
   }
 });
 
+// New POST endpoint to empty all counts
+app.post('/emptycounts', async (req, res) => {
+  try {
+    // Write an empty object to the JSON file
+    await writeNameCounter({});
+
+    res.status(200).json({ message: 'All name counts have been emptied' });
+  } catch (error) {
+    console.error('Error emptying name counts:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
  
 const port = process.env.PORT || 5500;
