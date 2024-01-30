@@ -8,6 +8,15 @@
 
 ## PyTorch
 
+**/node_modules
+**/build
+**/*.log
+
+
+lightning_logs/
+data/
+*.ckpt
+
 .coverage
 coverage.xml
 .dmypy.json

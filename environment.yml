@@ -1,16 +1,15 @@
-name: juno.tf
+name: deepdive
 channels:
 - conda-forge
 dependencies:
-  - python==3.7.3
-  - numpy
+  - python==3.9.18
   - pip
   - pip:
-    - tensorflow==2.7.0
-    - pandas
+    - torch==2.1.2
+    - pytorch-lightning=2.1.1
+    - torchvision=0.16.2
+    - torchmetrics==1.2.0
     - matplotlib
     - seaborn
     - importlib
-    # new
-    - torchvision
     
