@@ -138,6 +138,19 @@ app.post('/countname', async (req, res) => {
   }
 });
 
+app.get('/namecounts', async (req, res) => {
+  try {
+    // Read the current name counter from the JSON file
+    const nameCounter = await readNameCounter();
+
+    res.status(200).json(nameCounter);
+  } catch (error) {
+    console.error('Error retrieving name counts:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
  
 const port = process.env.PORT || 5500;
  
