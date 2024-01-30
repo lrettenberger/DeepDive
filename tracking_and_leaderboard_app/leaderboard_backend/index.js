@@ -10,6 +10,11 @@ app.use(express.json());
 const filePath = './leaderboard.json';
 app.use(bodyParser.json());
 
+// Function to check if the provided password matches the stored password for a user
+function isPasswordValid(player, providedPassword) {
+  return player.password === providedPassword;
+}
+
 
 app.post('/updatescore', async (req, res) => {
   try {
