@@ -45,7 +45,7 @@
            // Sort the leaderboard by player score in descending order
         const sortedLeaderboard = [...leaderboard].sort((a, b) => b.score - a.score);
         const tableBody = sortedLeaderboard
-        .filter(player => player.name && Number.isInteger(player.score) && player.score !== undefined)
+        .filter(player => player.name && typeof player.score === 'number')
         .map((player, index) => (
           <tr key={index}>
           <td>{index + 1}</td>
