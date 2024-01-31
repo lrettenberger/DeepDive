@@ -9,15 +9,15 @@ This project is for a lecture at Karlsruhe Institute of Technology. It aims at m
 Here's why this project fits so well for this:
 * The project is an interactive jupyter notebook, which makes it easy to walk through the explanations, run the code and immediately experience the change
 * The project is hosted on binder so there is no setup necessary and students can directly run the project in their browser
-* It covers a fundamental tensorflow tutorial on MNIST, including essential validation approaches
+* It covers a fundamental PyTorch tutorial on MNIST, including essential validation approaches
 
 Of course, no one project will serve all levels of expertice since your needs may be different. This is an attempt to kickstart rookies. You may also contribute or suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this project so far! You started your own deep learning projects and wonder 'why does my neural network not learn?' - here are the [coffee table solutions](https://www.amazon.de/dp/B09QRGWWZP) of my dear colleague and creator of this project Mark Schutera.
 
 
 ### Built With
 
-* [tensorflow](https://tensorflow.org/)
-* [jupyter notebook](https://jupyter.org/)
+* [PyTorch](https://pytorch.org/)
+* [Jupyter Notebook](https://jupyter.org/)
 * [binder](https://mybinder.org/)
 
 
@@ -26,7 +26,6 @@ Of course, no one project will serve all levels of expertice since your needs ma
 ## Getting Started
 
 Buckle up, click the button and off you go..
-
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/lrettenberger/DeepDive/HEAD?labpath=DeepDive.ipynb
 )
@@ -67,8 +66,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 ## Contact
 
 Luca Rettenberger - Luca.Rettenberger@kit.edu
-
-
 
 
 <!-- ACKNOWLEDGMENTS -->
