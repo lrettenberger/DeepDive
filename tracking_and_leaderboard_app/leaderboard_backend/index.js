@@ -165,6 +165,6 @@ app.post('/emptycounts', async (req, res) => {
 
 
  
-const port = process.env.PORT || 5500;
+const port = process.env.PORT || 443;
  
 app.listen(port, () => console.log(`Server hört an Port: ${port}`));

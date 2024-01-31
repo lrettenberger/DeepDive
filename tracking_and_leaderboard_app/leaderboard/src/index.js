@@ -29,7 +29,7 @@
 	  }
 	
 	  fetchLeaderboardData() {
-		fetch('http://194.164.52.117:5500/leaderboard')
+		fetch('http://194.164.52.117:443/leaderboard')
 		  .then(response => response.json())
 		  .then(data => {
 			console.log(data);
