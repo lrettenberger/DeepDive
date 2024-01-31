@@ -5,7 +5,6 @@ dependencies:
   - python==3.9.18
   - pip
   - pip:
-    - importlib==1.0.4
     - torch==2.1.2
     - pytorch-lightning==2.1.1
     - torchvision==0.16.2
