@@ -27,8 +27,6 @@ Of course, no one project will serve all levels of expertice since your needs ma
 
 Buckle up, click the button and off you go..
 
-https://colab.research.google.com/github/lrettenberger/DeepDive/blob/main/DeepDive.ipynb
-
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/lrettenberger/DeepDive/HEAD?labpath=DeepDive.ipynb
 )
 
