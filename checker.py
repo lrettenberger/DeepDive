@@ -44,9 +44,10 @@ def test_normalize(x, x_norm):
 
 
 def test_neural_network(marvin):
-    # TOODO
     try:
-        assert 1==1
+        assert marvin(torch.rand(1,28,28)).max() <= 1.0, f"Output is not in the range 0-1. Check your output function"
+        assert marvin(torch.rand(1,28,28)).max() >= 0.0, f"Output is not in the range 0-1. Check your output function"
+        assert sum(p.numel() for p in marvin.parameters()) == 7850, f"Wrong number of parameters. Check your model."
         post_status(function_name='test_neural_network_success')
         print("Neural network looks good, you are ready to go.")
     except AssertionError as e:
@@ -55,9 +56,15 @@ def test_neural_network(marvin):
 
 
 def test_accuracy(accuracy_func):
-    # TOODO
     try:
-        assert 1==1
+        y_pred = torch.zeros(10)
+        y_pred[0]=1.
+        y_pred = y_pred.unsqueeze(0)
+        assert accuracy_func(y_pred,torch.zeros(1))==1., 'Accuracy function wrong.'
+        y_pred = torch.zeros(10)
+        y_pred[3]=1.
+        y_pred = y_pred.unsqueeze(0)
+        assert accuracy_func(y_pred,torch.zeros(1))==0., 'Accuracy function wrong.'
         post_status(function_name='test_accuracy_success')
         print("your metric looks good, you are ready to go.")
     except AssertionError as e:
