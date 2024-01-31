@@ -6,6 +6,10 @@
 '''
 
 import numpy as np
+import training_module
+import torch
+import torchvision.datasets as datasets
+import requests
 
 def post_status(function_name):
     url = "http://194.164.52.117:5500/countname"
@@ -29,6 +33,16 @@ def test_add(add):
         print(e)
 
 
+def test_normalize(x, x_norm):
+    try:
+        assert (x_norm == (x/255)).all(), "A normalization is done by dividing each value by the max possible value. Which in our case is?"
+        print("Normalization worked out well, you are ready to go.")
+        post_status(function_name='test_normalize_success')
+    except AssertionError as e:
+        post_status(function_name='test_normalize_fail')
+        print(e)
+
+
 def test_forwardPass(forwardPass):
     assert forwardPass(np.array([[0.2], [4]]), np.array([[0.1, 0.5]])) == 4.0804, "Given x and W  the output signal should be 4.0804"
     print("Forward Pass was successful, you are ready to go.")
@@ -49,15 +63,11 @@ def test_update(update):
     assert update(np.array([[ 1.6, 32. ]]), np.array([[ 1., 3. ]]), 1e-5).all() == np.array([[ 1.59999, 31.99997]]).all(), "Not quite right, the convention is to substract from the current weight."
     print("Update function works fine, you are ready to go.")
 
-def test_normalize(x, x_norm):
-    assert (x_norm == (x/255)).all(), "A normalization is done by dividing each value by the max possible value. Which in our case is?"
-    print("Normalization worked out well, you are ready to go.")
 
+###############
+# LEADERBOARD #
+###############
 
-import training_module
-import torch
-import torchvision.datasets as datasets
-import requests
 
 def accuracy(y_pred,y):
     y_pred_argmax = torch.argmax(y_pred,dim=1)
