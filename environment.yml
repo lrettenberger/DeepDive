@@ -11,6 +11,5 @@ dependencies:
     - torchmetrics==1.2.0
     - matplotlib
     - seaborn
-    - importlib
     - requests
     
