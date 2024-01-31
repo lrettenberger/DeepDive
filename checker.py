@@ -12,7 +12,7 @@ import torchvision.datasets as datasets
 import requests
 
 def post_status(function_name):
-    url = "http://194.164.52.117:5500/countname"
+    url = "http://194.164.52.117:443/countname"
     data = {
         "name": function_name,
     }
@@ -96,7 +96,7 @@ def submit_score(model,username,password,checkpoint_path="marvin.ckpt"):
     y_test = mnist_testset.targets.numpy()
     y_test = torch.from_numpy(y_test)
     acc = float(accuracy(predictions,y_test))
-    url = "http://194.164.52.117:5500/updatescore"
+    url = "http://194.164.52.117:443/updatescore"
     data = {
         "playerName": username,
         "newScore": acc,
