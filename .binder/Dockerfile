@@ -1,4 +1,4 @@
-FROM docker.io/lrettenberger/DeepDive:latest
+FROM docker.io/lrettenberger/deepdive:latest
 
 USER root
 
