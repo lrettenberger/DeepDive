@@ -1,9 +1,6 @@
 FROM lrettenberger/deepdive:latest
 
-USER root
-
-
- RUN conda install --yes \
+RUN conda install --yes \
     'python=3.9.18' \
 
 RUN pip install\
