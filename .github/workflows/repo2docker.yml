@@ -37,7 +37,7 @@ jobs:
         run: jupyter-repo2docker --no-run .
 
       - name: Push Docker Image to Container Registry
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@master
         with:
           context: .
           file: .binder/Dockerfile
