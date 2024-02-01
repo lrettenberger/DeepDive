@@ -1,4 +1,5 @@
-FROM lrettenberger/deepdive:latest
+#FROM lrettenberger/deepdive:latest
+FROM scratch
 
 USER root
 
