@@ -2,7 +2,7 @@ name: deepdive
 channels:
 - conda-forge
 dependencies:
-  - python==3.9.18
+  - python>=3.9.18
   - pip
   - pip:
     - torch==2.1.2
