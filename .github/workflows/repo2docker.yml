@@ -19,22 +19,22 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
 
-      - name: update jupyter dependencies with repo2docker
-        uses: jupyterhub/repo2docker-action@master
-        with:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      # - name: update jupyter dependencies with repo2docker
+      #   uses: jupyterhub/repo2docker-action@master
+      #   with:
+      #     DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      #     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Set up Python
-        uses: actions/setup-python@master
-        with:
-          python-version: 3.9
+      # - name: Set up Python
+      #   uses: actions/setup-python@master
+      #   with:
+      #     python-version: 3.9
 
-      - name: Install repo2docker
-        run: pip install jupyter-repo2docker
+      # - name: Install repo2docker
+      #   run: pip install jupyter-repo2docker
 
-      - name: Build Docker Image
-        run: jupyter-repo2docker --no-run .
+      # - name: Build Docker Image
+      #   run: jupyter-repo2docker --no-run .
 
       - name: Push Docker Image to Container Registry
         uses: docker/build-push-action@master
