@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -37,4 +36,4 @@ jobs:
           file: .binder/Dockerfile
           push: true
           tags: |
-            docker.io/lrettenberger/deepdive
+            docker.io/lrettenberger/deepdive:latest
