@@ -6,9 +6,7 @@ jobs:
     steps:
     - name: Clear up disk space
       run: |
-        rm -f \
-            "/usr/local/share/boost" \
-            "$AGENT_TOOLSDIRECTORY"
+        rm -rf /usr/local/share/boost $AGENT_TOOLSDIRECTORY
     - name: checkout files in repo
       uses: actions/checkout@master
 
