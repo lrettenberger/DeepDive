@@ -50,7 +50,7 @@ def test_neural_network(marvin):
         assert sum(p.numel() for p in marvin.parameters()) == 7850, f"Wrong number of parameters. Check your model."
         assert type(marvin[0]) == torch.nn.modules.flatten.Flatten, 'The structure of your model is wrong.'
         assert type(marvin[1]) == torch.nn.modules.linear.Linear, 'The structure of your model is wrong.'
-        assert type(marvin[2]) == torch.nn.modules.activation.Sigmoid, 'The structure of your model is wrong.'
+        assert type(marvin[2]) == torch.nn.modules.activation.Softmax, 'The structure of your model is wrong.'
         post_status(function_name='test_neural_network_success')
         print("Neural network looks good, you are ready to go.")
     except Exception as e:
