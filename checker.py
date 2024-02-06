@@ -53,7 +53,7 @@ def test_neural_network(marvin):
         assert type(marvin[2]) == torch.nn.modules.activation.Sigmoid, 'The structure of your model is wrong.'
         post_status(function_name='test_neural_network_success')
         print("Neural network looks good, you are ready to go.")
-    except AssertionError as e:
+    except Exception as e:
         post_status(function_name='test_neural_network_fail')
         print(e)
 
