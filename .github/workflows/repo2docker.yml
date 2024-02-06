@@ -4,9 +4,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Clear up disk space
-      run: |
-        rm -rf /usr/local/share/boost $AGENT_TOOLSDIRECTORY
     - name: checkout files in repo
       uses: actions/checkout@master
 
