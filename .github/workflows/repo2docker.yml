@@ -6,7 +6,9 @@ jobs:
     steps:
     - name: checkout files in repo
       uses: actions/checkout@master
-
+    - name: Clear up disk space
+      run: |
+        rm -rf /usr/local/share/boost
     - name: update jupyter dependencies with repo2docker
       uses: machine-learning-apps/repo2docker-action@master
       with:
